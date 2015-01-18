@@ -9,28 +9,28 @@ import urllib
 class ReceiveCall(webapp2.RequestHandler):
     def post(self):
         resp = twilio.twiml.Response()
-        resp.say("Hello! Thank you for using our service. What is your street address? Press pound when you are finished.")
+        resp.say("Hello! Thank you for using our service. Please state your street address, then press pound.")
         resp.record(maxlength="30", action="/handle-recording0", transcribeCallback="/transcribe0")
         self.response.write(str(resp))
 
 class ReceiveCall1(webapp2.RequestHandler):
     def post(self):
         resp = twilio.twiml.Response()
-        resp.say("Thank you. What is the store that you would like to shop at? Press pound when you are finished.")
+        resp.say("Thank you. What is the store that you would like to shop at? Press pound when finished.")
         resp.record(maxlength="30", action="handle-recording1", transcribeCallback="/transcribe1")
         self.response.write(str(resp))
 
 class ReceiveCall2(webapp2.RequestHandler):
     def post(self):
         resp = twilio.twiml.Response()
-        resp.say("Please list the items that you would like to buy. Press pound when you are finished.")
+        resp.say("Please list the items that you would like to buy, then press pound.")
         resp.record(maxlength="30", action="handle-recording2", transcribeCallback="/transcribe2")
         self.response.write(str(resp))
 
 class ReceiveCall3(webapp2.RequestHandler):
     def post(self):
         resp = twilio.twiml.Response()
-        resp.say("Thank you, that will cost you ten thousand and five dollars. Goodbye")
+        resp.say("Thank you, your order will cost approximately $7.20 and is being placed. Goodbye.")
         resp.hangup()
         self.response.write(str(resp))
 
@@ -62,17 +62,17 @@ class Transcribe2(webapp2.RequestHandler):
         response = urllib2.urlopen(request)
 
         url = "http://kenliao.me/pennapp/update.php?method=isfinished&number="+urllib.quote(caller)
-        request = urllib2.request(url)
-        response = urllib2.urlopen(request)
+        request = urllib2.Request(url)
 
-        while response == 0:
-            time.sleep(3)
-            response = urllib2.urlopen(request)
-        
-        #now we will do the api with the fields from response
-		json_response = json.loads(response)
-		address = json_response["address"]
-		store = json_response["store"]
-		items = json_response["items"]
+        time.sleep(10)
+        response = urllib2.urlopen(request)
+        json_response = json.loads(response)
+	address = json_response[0]["address"]
+	store = json_response[0]["store"]
+	items = json_response[0]["items"]
 		
-		
+	account_sid = "ACcdd722da9eb23c0be222908001c05621"
+	auth_token  = "f42dc3d4155e275b7e6534a08d1c12fc"
+	client = TwilioRestClient(account_sid, auth_token)
+ 
+	message = client.messages.create(body="Sending "+items+" to "+address+".", to=caller, from_="+12673146567")
