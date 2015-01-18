@@ -29,7 +29,7 @@ class ReceiveCall2(webapp2.RequestHandler):
 class ReceiveCall3(webapp2.RequestHandler):
     def post(self):
         resp = twilio.twiml.Response()
-        resp.say("Thank you, your order will cost approximately $7.20 and is being placed. Goodbye.")
+        resp.say("Thank you, your order will cost approximately $7.20 and is being placed. It will be shipped by courier. Goodbye.")
         resp.hangup()
         self.response.write(str(resp))
 
