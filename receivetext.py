@@ -4,8 +4,9 @@ import twilio.twiml
 import json
 import apikeys
 import urllib2
+import urllib
 import base64
-
+from google.appengine.api import taskqueue
 from findcloseststore import FindClosest
 
 
@@ -16,6 +17,7 @@ headers = {'X-Parse-Application-Id': apikeys.appID,
 tableURL = 'https://api.parse.com/1/classes/Transactions'
 apikeys.pm_url_quote = "https://api.postmates.com/v1/customers/"+apikeys.pm_customerID+"/delivery_quotes"
 base64string = base64.encodestring('%s:%s' % (apikeys.pm_appID, "")).replace('\n', '')
+
 
 class ReceiveText(webapp2.RequestHandler):
     def upstate(self, state, objId):
@@ -32,6 +34,8 @@ class ReceiveText(webapp2.RequestHandler):
     def post(self):
         fromNumber = cgi.escape(self.request.get('From'))
         messageBody = cgi.escape(self.request.get('Body'))
+
+        # if messageBody.
 
         output = ''
 
@@ -111,19 +115,34 @@ class ReceiveText(webapp2.RequestHandler):
             r.add_header("Authorization", "Basic %s" % base64string)
             r = urllib2.urlopen(r).read()
             qt = json.loads(r)
-            
+
+            opener = urllib2.build_opener(urllib2.HTTPHandler)
+            DAJSON = {"Qid": qt['id']}
+            request = urllib2.Request(tableURL + '/' + objId, json.dumps(DAJSON), headers=headers)
+            request.get_method = lambda: 'PUT'
+            opener.open(request)
+
             output = 'Confirmation: purchasing ' + j['whatbuy'] + ' from ' + j['storename'] + \
                      ' at ' + j['wherefrom'] + ' to the destination ' + j['whereto'] + \
-                     '\nQuote: ' + qt['fee']
+                     ' costing $' + str(format(qt['fee'] * 0.01, '.2f')) + '. Reply "yes" to confirm.'
 
             self.upstate(4, objId)
 
         elif j['state'] == 4:
-            output = 'updates for you impatient soul'
+            # output = 'updates for you impatient soul'
+            if messageBody.strip().lower() == 'yes':
+                output = 'Order confirmed! Reply "update" for a delivery update'
+                self.upstate(5, objId)
+            else:
+                output = 'Order cancelled'
+                
+                opener = urllib2.build_opener(urllib2.HTTPHandler)
+                request = urllib2.Request(tableURL + '/' + objId, headers=headers)
+                request.get_method = lambda: 'DELETE'
+                opener.open(request)
             
-            self.upstate(5, objId)
-        # elif j['state'] == 5:
-        #     self.upstate(6)
+        elif j['state'] == 5:
+            self.upstate(6)
         else:
             output = 'BADNESS'
 
