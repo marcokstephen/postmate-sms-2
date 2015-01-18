@@ -1,5 +1,4 @@
 import webapp2
-import time
 import twilio.twiml
 import cgi
 import urllib2
@@ -60,19 +59,3 @@ class Transcribe2(webapp2.RequestHandler):
         url = "http://kenliao.me/pennapp/update.php?method=update&x=items&data="+urllib.quote(message)+"&number="+urllib.quote(caller)
         request = urllib2.Request(url)
         response = urllib2.urlopen(request)
-
-        url = "http://kenliao.me/pennapp/update.php?method=isfinished&number="+urllib.quote(caller)
-        request = urllib2.Request(url)
-
-        time.sleep(10)
-        response = urllib2.urlopen(request)
-        json_response = json.loads(response)
-	address = json_response[0]["address"]
-	store = json_response[0]["store"]
-	items = json_response[0]["items"]
-		
-	account_sid = "ACcdd722da9eb23c0be222908001c05621"
-	auth_token  = "f42dc3d4155e275b7e6534a08d1c12fc"
-	client = TwilioRestClient(account_sid, auth_token)
- 
-	message = client.messages.create(body="Sending "+items+" to "+address+".", to=caller, from_="+12673146567")
