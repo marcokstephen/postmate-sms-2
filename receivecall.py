@@ -1,6 +1,8 @@
 import webapp2
 import twilio.twiml
 import cgi
+import urllib2
+import urllib
 
 class ReceiveCall(webapp2.RequestHandler):
     def post(self):
@@ -32,15 +34,27 @@ class ReceiveCall3(webapp2.RequestHandler):
 
 class Transcribe0(webapp2.RequestHandler):
     def post(self):
-        caller = cgi.escape(self.request.get('From')
+        caller = cgi.escape(self.request.get('From'))
         message = cgi.escape(self.request.get('TranscriptionText'))
+
+        url = "http://kenliao.me/pennapp/update.php?method=update&x=address&data="+urllib.quote(message)+"&number="+urllib.quote(caller)
+        request = urllib2.Request(url)
+        response = urllib2.urlopen(request)
 
 class Transcribe1(webapp2.RequestHandler):
     def post(self):
-        caller = cgi.escape(self.request.get('From')
+        caller = cgi.escape(self.request.get('From'))
         message = cgi.escape(self.request.get('TranscriptionText'))
+
+        url = "http://kenliao.me/pennapp/update.php?method=update&x=store&data="+urllib.quote(message)+"&number="+urllib.quote(caller)
+        request = urllib2.Request(url)
+        response = urllib2.urlopen(request) 
 
 class Transcribe2(webapp2.RequestHandler):
     def post(self):
-        caller = cgi.escape(self.request.get('From')
+        caller = cgi.escape(self.request.get('From'))
         message = cgi.escape(self.request.get('TranscriptionText'))
+
+        url = "http://kenliao.me/pennapp/update.php?method=update&x=items&data="+urllib.quote(message)+"&number="+urllib.quote(caller)
+        request = urllib2.Request(url)
+        response = urllib2.urlopen(request)
