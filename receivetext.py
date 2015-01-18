@@ -105,7 +105,7 @@ class ReceiveText(webapp2.RequestHandler):
             pickup_address = j['whereto']
 
             addr_data = {'dropoff_address': deliver_address, 
-                    'pickup_address': pickup_address}
+                         'pickup_address': pickup_address}
 
             r = urllib2.Request(pm_url_quote, data=urllib.urlencode(addr_data))
             r.add_header("Authorization", "Basic %s" % base64string)
