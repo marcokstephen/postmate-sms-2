@@ -3,6 +3,7 @@ import time
 import twilio.twiml
 import cgi
 import urllib2
+import json
 import urllib
 
 class ReceiveCall(webapp2.RequestHandler):
@@ -69,3 +70,9 @@ class Transcribe2(webapp2.RequestHandler):
             response = urllib2.urlopen(request)
         
         #now we will do the api with the fields from response
+		json_response = json.loads(response)
+		address = json_response["address"]
+		store = json_response["store"]
+		items = json_response["items"]
+		
+		
