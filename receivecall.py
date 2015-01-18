@@ -1,4 +1,5 @@
 import webapp2
+import time
 import twilio.twiml
 import cgi
 import urllib2
@@ -58,3 +59,13 @@ class Transcribe2(webapp2.RequestHandler):
         url = "http://kenliao.me/pennapp/update.php?method=update&x=items&data="+urllib.quote(message)+"&number="+urllib.quote(caller)
         request = urllib2.Request(url)
         response = urllib2.urlopen(request)
+
+        url = "http://kenliao.me/pennapp/update.php?method=isfinished&number="+urllib.quote(caller)
+        request = urllib2.request(url)
+        response = urllib2.urlopen(request)
+
+        while response == 0:
+            time.sleep(3)
+            response = urllib2.urlopen(request)
+        
+        #now we will do the api with the fields from response
