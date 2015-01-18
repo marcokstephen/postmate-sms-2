@@ -6,5 +6,5 @@ from receivecall import ReceiveCall
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/receivetext', ReceiveText),
-    ('/receivecall', ReceiveCall(
+    ('/receivecall', ReceiveCall)
 ], debug=True)
