@@ -33,14 +33,14 @@ class ReceiveCall3(webapp2.RequestHandler):
 class Transcribe0(webapp2.RequestHandler):
     def post(self):
         caller = cgi.escape(self.request.get('From')
-        message = cgi.escape(self.request.get('TranscriptionText')
+        message = cgi.escape(self.request.get('TranscriptionText'))
 
 class Transcribe1(webapp2.RequestHandler):
     def post(self):
         caller = cgi.escape(self.request.get('From')
-        message = cgi.escape(self.request.get('TranscriptionText')  
+        message = cgi.escape(self.request.get('TranscriptionText'))
 
 class Transcribe2(webapp2.RequestHandler):
     def post(self):
         caller = cgi.escape(self.request.get('From')
-        message = cgi.escape(self.request.get('TranscriptionText')
+        message = cgi.escape(self.request.get('TranscriptionText'))
