@@ -149,7 +149,6 @@ class ReceiveText(webapp2.RequestHandler):
                 opener.open(request)
             
         elif j['state'] == 5:
-            print j
             s = j['updatedAt']
             d = dateutil.parser.parse(s)
             d = d.astimezone(dateutil.tz.tzutc())
