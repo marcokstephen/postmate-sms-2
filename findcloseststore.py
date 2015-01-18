@@ -4,9 +4,9 @@ import urllib
 
 class FindClosest():
     @staticmethod
-    def findclosest():
-        keyword = "Walmart"
-        current_address = "201-269 S 36th St, Philadelphia, PA 19104, USA"
+    def findclosest(keyword, current_address):
+        #keyword = "Walmart"
+        #current_address = "201-269 S 36th St, Philadelphia, PA 19104, USA"
 
         api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="+urllib.quote(current_address)+"&key=AIzaSyBTsBPcS2k5L9kCXUW0qnbT3M0vadHrspU"
         request = urllib2.Request(api_url)
