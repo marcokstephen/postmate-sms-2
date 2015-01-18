@@ -28,7 +28,7 @@ if(isset($_GET['number']) && ($_GET['method'] == "isfinished")){
         //delete the record
     }
     else{
-        echo false;
+        echo 0;
     }
 }
 

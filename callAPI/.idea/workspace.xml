@@ -28,17 +28,17 @@
       <file leaf-file-name="update.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/update.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20982736" vertical-offset="522" max-vertical-offset="1768">
-              <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.564409" vertical-offset="85" max-vertical-offset="1768">
+              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
               <folding>
-                <marker date="1421572231073" expanded="true" signature="573:620" placeholder="SELECT * FRO..delivery..." />
-                <marker date="1421572231073" expanded="true" signature="1252:1302" placeholder="INSERT INTO ..." />
-                <marker date="1421572231073" expanded="true" signature="1673:1736" placeholder="UPDATE deliv..." />
-                <marker date="1421572231073" expanded="true" signature="1941:2000" placeholder="UPDATE deliv..." />
-                <marker date="1421572231073" expanded="true" signature="2203:2262" placeholder="UPDATE deliv..." />
-                <marker date="1421572231073" expanded="true" signature="2767:2830" placeholder="UPDATE deliv..." />
-                <marker date="1421572231073" expanded="true" signature="3015:3074" placeholder="UPDATE deliv..." />
-                <marker date="1421572231073" expanded="true" signature="3257:3316" placeholder="UPDATE deliv..." />
+                <marker date="1421575375934" expanded="true" signature="573:620" placeholder="SELECT * FRO..delivery..." />
+                <marker date="1421575375934" expanded="true" signature="1248:1298" placeholder="INSERT INTO ..." />
+                <marker date="1421575375934" expanded="true" signature="1669:1732" placeholder="UPDATE deliv..." />
+                <marker date="1421575375934" expanded="true" signature="1937:1996" placeholder="UPDATE deliv..." />
+                <marker date="1421575375934" expanded="true" signature="2199:2258" placeholder="UPDATE deliv..." />
+                <marker date="1421575375934" expanded="true" signature="2763:2826" placeholder="UPDATE deliv..." />
+                <marker date="1421575375934" expanded="true" signature="3011:3070" placeholder="UPDATE deliv..." />
+                <marker date="1421575375934" expanded="true" signature="3253:3312" placeholder="UPDATE deliv..." />
               </folding>
             </state>
           </provider>
@@ -237,17 +237,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/update.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20982736" vertical-offset="522" max-vertical-offset="1768">
-          <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.564409" vertical-offset="85" max-vertical-offset="1768">
+          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
           <folding>
-            <marker date="1421572231073" expanded="true" signature="573:620" placeholder="SELECT * FRO..delivery..." />
-            <marker date="1421572231073" expanded="true" signature="1252:1302" placeholder="INSERT INTO ..." />
-            <marker date="1421572231073" expanded="true" signature="1673:1736" placeholder="UPDATE deliv..." />
-            <marker date="1421572231073" expanded="true" signature="1941:2000" placeholder="UPDATE deliv..." />
-            <marker date="1421572231073" expanded="true" signature="2203:2262" placeholder="UPDATE deliv..." />
-            <marker date="1421572231073" expanded="true" signature="2767:2830" placeholder="UPDATE deliv..." />
-            <marker date="1421572231073" expanded="true" signature="3015:3074" placeholder="UPDATE deliv..." />
-            <marker date="1421572231073" expanded="true" signature="3257:3316" placeholder="UPDATE deliv..." />
+            <marker date="1421575375934" expanded="true" signature="573:620" placeholder="SELECT * FRO..delivery..." />
+            <marker date="1421575375934" expanded="true" signature="1248:1298" placeholder="INSERT INTO ..." />
+            <marker date="1421575375934" expanded="true" signature="1669:1732" placeholder="UPDATE deliv..." />
+            <marker date="1421575375934" expanded="true" signature="1937:1996" placeholder="UPDATE deliv..." />
+            <marker date="1421575375934" expanded="true" signature="2199:2258" placeholder="UPDATE deliv..." />
+            <marker date="1421575375934" expanded="true" signature="2763:2826" placeholder="UPDATE deliv..." />
+            <marker date="1421575375934" expanded="true" signature="3011:3070" placeholder="UPDATE deliv..." />
+            <marker date="1421575375934" expanded="true" signature="3253:3312" placeholder="UPDATE deliv..." />
           </folding>
         </state>
       </provider>
