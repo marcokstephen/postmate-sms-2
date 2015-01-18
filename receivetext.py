@@ -14,8 +14,8 @@ headers = {'X-Parse-Application-Id': apikeys.appID,
            'Content-Type': 'application/json'}
 
 tableURL = 'https://api.parse.com/1/classes/Transactions'
-pm_url_quote = "https://api.postmates.com/v1/customers/"+pm_customerID+"/delivery_quotes"
-base64string = base64.encodestring('%s:%s' % (pm_appID, "")).replace('\n', '')
+apikeys.pm_url_quote = "https://api.postmates.com/v1/customers/"+apikeys.pm_customerID+"/delivery_quotes"
+base64string = base64.encodestring('%s:%s' % (apikeys.pm_appID, "")).replace('\n', '')
 
 class ReceiveText(webapp2.RequestHandler):
     def upstate(self, state, objId):
@@ -107,7 +107,7 @@ class ReceiveText(webapp2.RequestHandler):
             addr_data = {'dropoff_address': deliver_address, 
                          'pickup_address': pickup_address}
 
-            r = urllib2.Request(pm_url_quote, data=urllib.urlencode(addr_data))
+            r = urllib2.Request(apikeys.pm_url_quote, data=urllib.urlencode(addr_data))
             r.add_header("Authorization", "Basic %s" % base64string)
             r = urllib2.urlopen(r).read()
             qt = json.loads(r)
