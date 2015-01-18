@@ -6,6 +6,9 @@ import apikeys
 import urllib2
 import urllib
 import base64
+import dateutil.parser
+import datetime
+import time
 from google.appengine.api import taskqueue
 from findcloseststore import FindClosest
 
@@ -34,8 +37,6 @@ class ReceiveText(webapp2.RequestHandler):
     def post(self):
         fromNumber = cgi.escape(self.request.get('From'))
         messageBody = cgi.escape(self.request.get('Body'))
-
-        # if messageBody.
 
         output = ''
 
@@ -122,6 +123,12 @@ class ReceiveText(webapp2.RequestHandler):
             request.get_method = lambda: 'PUT'
             opener.open(request)
 
+            opener = urllib2.build_opener(urllib2.HTTPHandler)
+            DAJSON = {"duration": qt['duration']}
+            request = urllib2.Request(tableURL + '/' + objId, json.dumps(DAJSON), headers=headers)
+            request.get_method = lambda: 'PUT'
+            opener.open(request)
+
             output = 'Confirmation: purchasing ' + j['whatbuy'] + ' from ' + j['storename'] + \
                      ' at ' + j['wherefrom'] + ' to the destination ' + j['whereto'] + \
                      ' costing $' + str(format(qt['fee'] * 0.01, '.2f')) + '. Reply "yes" to confirm.'
@@ -142,7 +149,16 @@ class ReceiveText(webapp2.RequestHandler):
                 opener.open(request)
             
         elif j['state'] == 5:
-            self.upstate(6)
+            print j
+            s = j['updatedAt']
+            d = dateutil.parser.parse(s)
+            d = d.astimezone(dateutil.tz.tzutc())
+            d1_t = time.mktime((d + datetime.timedelta(minutes=j['duration'])).timetuple())
+            d2_t = time.mktime(datetime.datetime.now().timetuple())
+            min = int(int(d1_t-d2_t) / 60)
+            output = str(min) + ' minutes remaining'
+            
+            # self.upstate(6)
         else:
             output = 'BADNESS'
 
