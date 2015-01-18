@@ -1,0 +1,10 @@
+cgi
+webapp2
+requests
+twilio
+httplib2
+six.py
+venv
+*.pyc
+*.py~
+*.html~
